@@ -15,9 +15,11 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
     color: "#3131bd",
   },
   [`&.${tableCellClasses.body}`]: {
-    fontSize: 12,
+    fontSize: 14,
     color: "#291952",
-    border: "1px solid #80edeb"
+    border: "1px solid #80edeb",
+   padding:"9px",
+   
   },
 }));
 
@@ -34,14 +36,14 @@ function createData(name, calories, fat, carbs, protein, patient, namep, dp, cb,
 }
 
 const rows = [
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0, 4, 5, 6, 6, 7, 8),
-  createData('Ice cream', 237, 9.0, 37, 4.3, 4, 5, 6, 6, 7,),
-  createData('Eclair', 262, 16.0, 24, 6.0, 4, 5, 6, 6, 7,),
-  createData('Cupcake', 305, 3.7, 67, 4.3, 4, 5, 6, 6, 7,),
-  createData('Gingerbread', 356, 16.0, 49, 3.9, 4, 5, 6, 6, 7,),
-  createData('Gingerbread', 356, 16.0, 49, 3.9, 4, 5, 6, 6, 7,),
-  createData('Gingerbread', 356, 16.0, 49, 3.9, 4, 5, 6, 6, 7,),
-  createData('Gingerbread', 356, 16.0, 49, 3.9, 4, 5, 6, 6, 7,),
+  createData('ipl23445565','Jeeth singh', 29, 'Male', 9845667324,'Cash', 'Dr.Priyathosh ', 'Rs.1,25,000', 'Rs.1,00,000', 'Nithesh'),
+  createData('ipl23445565', 'Jeeth singh', 29,'Male', 9845667324, 'Cash', 'Dr.Priyathosh', 'Rs.1,25,000', 'Rs.1,00,000', 'Nithesh'),
+  createData('ipl23445565', 'Jeeth singh', 29, 'Male', 9845667324, 'Cash', 'Dr.Priyathosh ', 'Rs.1,25,000', 'Rs.1,00,000', 'Nithesh'),
+  createData('ipl23445565', 'Jeeth singh', 29, 'Male', 9845667324, 'Cash', 'Dr.Priyathosh ', 'Rs.1,25,000', 'Rs.1,00,000', 'Nithesh'),
+  createData('ipl23445565', 'Jeeth singh', 29, 'Male',9845667324, 'Cash', 'Dr.Priyathosh ', 'Rs.1,25,000', 'Rs.1,00,000', 'Nithesh'),
+  createData('ipl23445565', 'Jeeth singh', 29, 'Male', 9845667324, 'Cash', 'Dr.Priyathosh ', 'Rs.1,25,000', 'Rs.1,00,000', 'Nithesh'),
+  createData('ipl23445565', 'Jeeth singh', 29, 'Male', 9845667324, 'Cash', 'Dr.Priyathosh ', 'Rs.1,25,000', 'Rs.1,00,000', 'Nithesh'),
+  createData('ipl23445565', 'Jeeth singh', 29, 'Male', 9845667324, 'Cash', 'Dr.Priyathosh ', 'Rs.1,25,000', 'Rs.1,00,000', 'Nithesh'),
 ];
 
 export default function EnhancedTables() {

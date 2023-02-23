@@ -18,7 +18,7 @@ const Card1 = () => {
 
   return (
     <div className='container'>
-      <Grid container style={{ backgroundColor: "#687574 ", marginTop: "25px", alignItems: "center", borderRadius: "5px" }} display={"flex"} justifyContent={"space-between"} padding={"5px"}>
+      <Grid container style={{ backgroundColor: "#687574 ", marginTop: "2px", alignItems: "center", borderRadius: "5px" }} display={"flex"} justifyContent={"space-between"} padding={"5px"}>
         <Grid item alignItems={"center"} justifyContent={"center"} marginTop={"1px"} fontSize="20px" color={"white"}>
           Bill Tracking
         </Grid>

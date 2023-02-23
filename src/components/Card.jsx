@@ -18,7 +18,7 @@ const Card = () => {
   ];
   return (
     <div className='container'>
-      <Grid container display={"flex"} flexDirection={"row"} justifyContent={"space-around"} alignItems={"center"} sx={{backgroundColor:"#8c6631", marginTop:"5px", height: "80px",borderRadius:"5px"}} > 
+      <Grid container display={"flex"} flexDirection={"row"} justifyContent={"space-around"} alignItems={"center"} sx={{backgroundColor:"#8c6631", marginTop:"30px", height: "80px",borderRadius:"5px"}} > 
         <Grid item alignItems={"center"}justifyContent={"center"} marginTop={"1px"} fontSize="40px" color={"white"}>
          48
         </Grid>
