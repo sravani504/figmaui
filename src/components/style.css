@@ -1,0 +1,33 @@
+body{
+    background: #e6f5ee;
+}
+.appbar{
+    /* background-color:#8c6631 !important; */
+    background-color: #161c38 !important;
+}
+.appbar-1{
+        background-color:#8c6631 !important;
+        margin-top: 30px;
+
+}
+
+.appbar-2{
+    background-color:#687574 !important;
+    margin-top: 30px;
+  
+}
+.card{
+    background-color: #8c6631 !important;
+    border-radius: 5px;
+
+}
+.container{
+    width: 93%;
+    margin-left: 4%;
+    border-radius: 5px;
+    margin-bottom:3%;
+
+}
+.image{
+    background-color: black;
+}
