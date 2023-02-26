@@ -10,9 +10,10 @@ import Paper from '@mui/material/Paper';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
-    backgroundColor: " #e8f0f0b4",
+    backgroundColor: "#c7dbf2",
     padding: "11px",
-    color: "#3131bd",
+    color: "#0b0b87",
+    fontWeight: "bold"
   },
   [`&.${tableCellClasses.body}`]: {
     fontSize: 14,
@@ -31,8 +32,8 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-function createData(name, calories, fat, carbs, protein, patient, namep, dp, cb, lc) {
-  return { name, calories, fat, carbs, protein, patient, namep, dp, cb, lc };
+function createData(name, calories, fat, carbs, protein, patient, namep, dp, cb, lc,la) {
+  return { name, calories, fat, carbs, protein, patient, namep, dp, cb, lc,la };
 }
 
 const rows = [
@@ -44,6 +45,8 @@ const rows = [
   createData('ipl23445565', 'Jeeth singh', 29, 'Male', 9845667324, 'Cash', 'Dr.Priyathosh ', 'Rs.1,25,000', 'Rs.1,00,000', 'Nithesh'),
   createData('ipl23445565', 'Jeeth singh', 29, 'Male', 9845667324, 'Cash', 'Dr.Priyathosh ', 'Rs.1,25,000', 'Rs.1,00,000', 'Nithesh'),
   createData('ipl23445565', 'Jeeth singh', 29, 'Male', 9845667324, 'Cash', 'Dr.Priyathosh ', 'Rs.1,25,000', 'Rs.1,00,000', 'Nithesh'),
+  createData('ipl23445565', 'Jeeth singh', 29, 'Male', 9845667324, 'Cash', 'Dr.Priyathosh ', 'Rs.1,25,000', 'Rs.1,00,000', 'Nithesh'),
+
 ];
 
 export default function EnhancedTables() {
@@ -63,7 +66,9 @@ export default function EnhancedTables() {
               <StyledTableCell align="right">Latest Counselled amount</StyledTableCell>
               <StyledTableCell align="right">Current Apporox Bill</StyledTableCell>
               <StyledTableCell align="right">Last counselled By</StyledTableCell>
-
+              <StyledTableCell align="right">Last counselled </StyledTableCell>
+             
+             
             </TableRow>
           </TableHead>
           <TableBody >
@@ -81,6 +86,7 @@ export default function EnhancedTables() {
                 <StyledTableCell align="right">{row.dp}</StyledTableCell>
                 <StyledTableCell align="right">{row.cb}</StyledTableCell>
                 <StyledTableCell align="right">{row.lc}</StyledTableCell>
+                <StyledTableCell align="right">{row.la}</StyledTableCell>
 
               </StyledTableRow>
             ))}

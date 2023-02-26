@@ -14,7 +14,7 @@ const Card = () => {
     { label: 'room-2'},
     { label: 'room-3' },
     { label: 'room-4'},
-    { label: 'room-5 '},
+    { label: 'room-5 '},  
   ];
   return (
     <div className='container'>
@@ -29,13 +29,13 @@ const Card = () => {
           <Grid item>
             <Typography>Room:</Typography>  
           </Grid> 
-          <Grid item pl={2}>
+          <Grid item pl={2} >
             <Autocomplete
               disablePortal
               id="combo-box-demo"
               options={rooms}
-              sx={{ backgroundColor:"white",border:"none", borderRadius:"5px", width: "154px", height: "40px", "& .MuiOutlinedInput-root":{padding: "0px"}, alignItems: "center", "& .MuiInputLabel-root":{lineHeight: 1}, "& .MuiAutocomplete-endAdornment":{background: "#251d6e",borderRadius:"5px"}}}
-              renderInput={(params) => <TextField  {...params} label="Room Name" />}
+              sx={{ backgroundColor:"white",border:"none",justifyContent:"center", borderRadius:"5px", width: "154px", height: "38px", "& .MuiOutlinedInput-root":{padding: "0px"}, alignItems: "center", "& .MuiInputLabel-root":{lineHeight: 1}, "& .MuiAutocomplete-endAdornment":{background: "#251d6e",color:"white",borderRadius:"5px"},"& .MuiButtonBase-root":{color:"white"}}}
+              renderInput={(params) => <TextField  justifyContent={"center"}  {...params} label="Room Name" />}
             />
           </Grid>
         </Grid>
