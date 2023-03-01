@@ -30,9 +30,9 @@ export default function Navbar() {
             edge="start"
             color="inherit"
             aria-label="open drawer"
-            sx={{ mr: 2,marginLeft:"2px"}}
+            sx={{ mr: 2,marginLeft:"26px"}}
           >
-            <img src="https://www.equitybulls.com/equitybullsadmin/uploads/Krishna%20Institute%20of%20Medical%20Sciences%20Limited%20-%20KIMS%20Hospitals%20Logo%202.jpg" width={"100px"} marginLeft={"20%"}  />
+            <img src="https://www.equitybulls.com/equitybullsadmin/uploads/Krishna%20Institute%20of%20Medical%20Sciences%20Limited%20-%20KIMS%20Hospitals%20Logo%202.jpg" width={"100px"} marginLeft={"40%"}  />
           </IconButton>
           <Box sx={{ flexGrow: 1 }} />
           <BsSpeedometer2  />

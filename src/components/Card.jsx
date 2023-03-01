@@ -1,4 +1,3 @@
-
 import React from 'react';
 import Typography from '@mui/material/Typography';
 import { Button } from '@mui/material';
@@ -29,13 +28,13 @@ const Card = () => {
           <Grid item>
             <Typography>Room:</Typography>  
           </Grid> 
-          <Grid item pl={2} >
+          <Grid item pl={1} >
             <Autocomplete
               disablePortal
               id="combo-box-demo"
               options={rooms}
-              sx={{ backgroundColor:"white",border:"none",justifyContent:"center", borderRadius:"5px", width: "154px", height: "38px", "& .MuiOutlinedInput-root":{padding: "0px"}, alignItems: "center", "& .MuiInputLabel-root":{lineHeight: 1}, "& .MuiAutocomplete-endAdornment":{background: "#251d6e",color:"white",borderRadius:"5px"},"& .MuiButtonBase-root":{color:"white"}}}
-              renderInput={(params) => <TextField  justifyContent={"center"}  {...params} label="Room Name" />}
+              sx={{ backgroundColor: "white", border: "none", borderRadius: "5px", width: "170px", "& .MuiOutlinedInput-root": { padding: "0px" }, "& .MuiInputLabel-root": { lineHeight: "14px" }, "& .MuiAutocomplete-endAdornment": { background: "#251d6e", borderRadius: "5px", right: "0px !important",height:"36px !important", top: "calc(50% - 18px)"  }, "& .MuiButtonBase-root":{color:"white", marginRight: "0px !important"}, "& .MuiAutocomplete-input": {textAlign: "center"}, " & .MuiOutlinedInput-root":{Right:"0px"}," & .MuiAutocomplete-root":{right:"80px"},"& .MuiSvgIcon-root":{height: "31px !important"}, " & .MuiAutocomplete-popper":{textAlign:"center"}}}
+              renderInput={(params) => <TextField  textAlign={"center"} {...params} label="Room Name" />}
             />
           </Grid>
         </Grid>

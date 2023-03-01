@@ -1,11 +1,16 @@
 import React from 'react';
 import { Button } from '@mui/material';
 import { Grid, Box } from '@mui/material';
+import { useState,useEffect } from 'react';
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import { IoIosSearch } from "react-icons/io";
 import InputAdornment from "@mui/material/InputAdornment";
+import XLSX from "sheetjs-style";
+import * as FileSaver from "file-saver";
+
+
 
 const Card1 = () => {
   const names = [
@@ -15,6 +20,48 @@ const Card1 = () => {
     { label: 'Rayon' },
     { label: 'Niveth' },
   ];
+
+  const fileType='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet; charset=UTF-8'; 
+  const fileExtension = ".xlsx";
+ 
+
+  const exportToExcel = async () => {
+
+    const ws = XLSX.utils.json_to_sheet (data);
+    
+    const wb= { Sheets: { 'data': ws }, SheetNames: ['data'] };
+    
+    const excelBuffer =XLSX.write(wb, {bookType: 'xlsx', type: 'array' });
+     const content = new Blob([excelBuffer], { type: fileType });
+    
+    FileSaver.saveAs (content, "tableData" + fileExtension);
+    
+    }
+
+
+  const [data,setData]=useState([]);
+
+  const getData=()=>{
+    fetch('https://jsonplaceholder.typicode.com/comments'
+    ,{
+      headers : { 
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+       }
+    }
+    )
+      .then(function(response){
+        console.log(response)
+        return response.json();
+      })
+      .then(function(myJson) {
+        console.log(myJson);
+        setData(myJson)
+      });
+  }
+  useEffect(()=>{
+    getData()
+  },[])
 
   return (
     <div className='container mb-0' style={{marginBottom: "0px"}}>
@@ -31,11 +78,11 @@ const Card1 = () => {
               disablePortal
               id="combo-box-demo"
               options={names}
-              sx={{ backgroundColor: "white", border: "none", borderRadius: "5px", width: "170px", "& .MuiOutlinedInput-root": { padding: "0px" }, "& .MuiInputLabel-root": { lineHeight: 1 }, "& .MuiAutocomplete-endAdornment": { background: "#251d6e", borderRadius: "5px", marginRight: "px" }, "& .MuiButtonBase-root":{color:"white"} }}
-              renderInput={(params) => <TextField  {...params} label="consellor Name" />}
+              sx={{ backgroundColor: "white", border: "none", borderRadius: "5px", width: "170px", "& .MuiOutlinedInput-root": { padding: "0px" }, "& .MuiInputLabel-root": {lineHeight:"13px" }, "& .MuiAutocomplete-endAdornment": { background: "#251d6e", borderRadius: "5px", right: "0px !important", top: "calc(50% - 18px)"  }, "& .MuiButtonBase-root":{color:"white", marginRight: "0px !important"}, "& .MuiAutocomplete-input": {textAlign: "center"}, " & .MuiOutlinedInput-root":{right:"0px"}," & .MuiAutocomplete-root":{right:"80px"},"& .MuiSvgIcon-root":{height: "31px !important"}, "& .MuiOutlinedInput-input":{alignItems:"center",justifyContent:"center"},"& .MuiAutocomplete-popper":{justifyContent:"center"}}}
+              renderInput={(params) => <TextField  {...params} label="Consellor Name" />}
             />
           </Grid>
-          <Grid item mr={1} pl={1}>
+          <Grid item mr={1} pl={2}>
             <Typography>IP or UMR No:</Typography>
           </Grid>
           <Grid item pl={1} mr={1} padding={"0px"}>
@@ -47,13 +94,16 @@ const Card1 = () => {
               noValidate
               autoComplete="off"
             >
-              <TextField id="outlined-basic" label="UMR12349857" alignItems="center" variant="outlined" sx={{'& . MuiOutlinedInput-input':{padding:"0px"},'& .MuiInputBase-input':{height:"37px"},'& .MuiFormLabel-root':{justifyContent:"space-between", alignItems:"center",lineHeight: 1}, '& .MuiInputAdornment-root':{background:"#251d6e",width:"30px",height:"26px",borderRadius:"5px",padding:"1px",color:"white"}}}
+              <TextField id="outlined-basic" label="UMR12349857" alignItems="center" variant="outlined" sx={{'& . MuiOutlinedInput-input':{padding:"0px"},'& .MuiInputBase-input':{height:"35px"},'& .MuiFormLabel-root':{justifyContent:"space-between", alignItems:"center",lineHeight: 1}, '& .MuiInputAdornment-root':{background:"#251d6e",width:"34px",height:"33px",borderRadius:"5px",padding:"1px",color:"white"},"& .MuiOutlinedInput-root":{paddingRight: "0px"}}}
                 InputProps={{   
-                  endAdornment: <InputAdornment position="end"><IoIosSearch size={18} alignmentBaseline={"central"} /></InputAdornment>
+                  endAdornment: <InputAdornment position="end"><IoIosSearch size={25} style={{paddingLeft: "2px"}} alignmentBaseline={"central"} /></InputAdornment>
                 }}
               />
             </Box>
           </Grid>
+          <Box sx={{ display: "flex", justifyContent: "flex-end" }} data-testid="view-data-model-pagination">
+      <Button variant='contained'  onClick={exportToExcel}>Export to Excel</Button>
+      </Box>
         </Grid>
       </Grid>
     </div>
