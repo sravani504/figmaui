@@ -17,8 +17,9 @@ import IconButton from '@mui/material/IconButton';
 import TablePagination from '@mui/material/TablePagination';
 import { useTheme } from '@emotion/react';
 import { Stack,Box,Button } from '@mui/material';
-import XLSX from "sheetjs-style";
-import * as FileSaver from "file-saver";
+import content from "../../src/content.json";
+import moment from "moment";
+import dayjs from 'dayjs';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -43,10 +44,6 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
     border: "1px solid #80edeb"
   },
 }));
-
-// function createData(posiId,Id, PatientName, name, PatientGender, PhoneNumber,PayerType,DoctorName,LatestCounselledamount,CurrentApporoxBill, LastCounselledBy) {
-//   return { posiId,Id, PatientName, name,PatientGender , PhoneNumber, PayerType,DoctorName,LatestCounselledamount,CurrentApporoxBill,LastCounselledBy };
-// }
 
 function TablePaginationActions(props) {
   const theme = useTheme();
@@ -109,23 +106,16 @@ TablePaginationActions.propTypes = {
   rowsPerPage: PropTypes.number.isRequired,
 };
 
-export default function EnhancedTables(props) {
-   
-  // const rows = [
-  //   createData('1','ipl23445565','Jeeth singh', 29, 'Male', 9845667324,'Cash', 'Dr.Priyathosh ', 'Rs.1,25,000', 'Rs.1,00,000', 'Nithesh'),
-  //   createData('2','ipl23445565', 'Jeeth singh', 29,'Male', 9845667324, 'Cash', 'Dr.Priyathosh', 'Rs.1,25,000', 'Rs.1,00,000', 'Nithesh'),
-  //   createData('3','ipl23445565', 'Jeeth singh', 29, 'Male', 9845667324, 'Cash', 'Dr.Priyathosh ', 'Rs.1,25,000', 'Rs.1,00,000', 'Nithesh'),
-  //   createData('4','ipl23445565', 'Jeeth singh', 29, 'Male', 9845667324, 'Cash', 'Dr.Priyathosh ', 'Rs.1,25,000', 'Rs.1,00,000', 'Nithesh'),
-  //   createData('5','ipl23445565', 'Jeeth singh', 29, 'Male',9845667324, 'Cash', 'Dr.Priyathosh ', 'Rs.1,25,000', 'Rs.1,00,000', 'Nithesh'),
-  //   createData('6','ipl23445565', 'Jeeth singh', 29, 'Male', 9845667324, 'Cash', 'Dr.Priyathosh ', 'Rs.1,25,000', 'Rs.1,00,000', 'Nithesh'),
-  //   createData('7','ipl23445565', 'Jeeth singh', 29, 'Male', 9845667324, 'Cash', 'Dr.Priyathosh ', 'Rs.1,25,000', 'Rs.1,00,000', 'Nithesh'),
-  //   createData('8','ipl23445565', 'Jeeth singh', 29, 'Male', 9845667324, 'Cash', 'Dr.Priyathosh ', 'Rs.1,25,000', 'Rs.1,00,000', 'Nithesh'),
-  //   createData('9','ipl23445565', 'Jeeth singh', 29, 'Male', 9845667324, 'Cash', 'Dr.Priyathosh ', 'Rs.1,25,000', 'Rs.1,00,000', 'Nithesh'),
-  
-  // ];
-
+export default function EnhancedTables({searchTerm,setExportData,postid,selectedDateRange}) {
+// console.log(exportData);
+console.log(postid);
+console.log(selectedDateRange);
+  console.log(content);
   const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  const [rowsPerPage, setRowsPerPage] = React.useState(20);
+  const [defaultData,setDefaultData]=useState(content);
+  const [data,setData]=useState(content);
+  console.log(data);
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -136,88 +126,161 @@ export default function EnhancedTables(props) {
     setPage(0);
   };
 
-// const repeateData= Array(repeat).fill(createData('1','ipl23445565','Jeeth singh', 29, 'Male', 9845667324,'Cash', 'Dr.Priyathosh ', 'Rs.1,25,000', 'Rs.1,00,000', 'Nithesh'));
+  
+   
 
-    const [data,setData]=useState([]);
+    // const getData=()=>{
+    //   fetch('https://jsonplaceholder.typicode.com/comments'
+    //   ,{
+    //     headers : { 
+    //       'Content-Type': 'application/json',
+    //       'Accept': 'application/json'
+    //      }
+    //   }
+    //   )
+    //     .then(function(response){
+    //       return response.json();
+    //     })
+    //     .then(function(myJson) {
+    //       console.log(myJson);
+    //       setData(myJson)
+    //       setDefaultData(myJson)
+    //     });
+    // }
 
-    const getData=()=>{
-      fetch('https://jsonplaceholder.typicode.com/comments'
-      ,{
-        headers : { 
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-         }
+    // useEffect(()=>{
+    //   getData();
+    // },[])
+
+    // const getStaticData=()=>
+    // { 
+    //   console.log(content);
+    //   setData(content);
+    //   setDefaultData(content);
+    // }
+    // useEffect(()=>{
+    //   getStaticData();
+    // },[])
+
+    useEffect(()=>
+    {
+     const filterData = defaultData.filter((item) => {
+        const itemDate = new Date(item.date); 
+        const changedDate = dayjs(itemDate).format("YYYY-MM-DD");
+        console.log(dayjs(selectedDateRange[0]).format('YYYY-MM-DD'),dayjs(selectedDateRange[1]).format('YYYY-MM-DD'));
+        return dayjs(selectedDateRange[0]).format("YYYY-MM-DD") <= changedDate && changedDate <= dayjs(selectedDateRange[1]).format("YYYY-MM-DD")
+      });
+      setData(filterData);
+      setExportData(filterData);
+    },[selectedDateRange]);
+
+    console.log(data);
+     
+     useEffect(()=>
+     {
+      if(searchTerm === "" )
+      {
+         setData(defaultData)
+         setExportData(defaultData);
+      }else{
+        const filteredData=defaultData.filter((item)=>{
+          return item.email.toLowerCase().includes(searchTerm.toLowerCase());
+         })
+         setData(filteredData);
+         setExportData(filteredData);
+      }    
+     },[searchTerm]);
+
+     console.log(postid);
+     useEffect(()=>
+     {
+      if(postid?.length=== 0)
+      {
+        if(searchTerm === "")
+        {
+          setData(defaultData);
+          console.log(defaultData);
+          setExportData(defaultData)    
+        }else
+        {
+          const filteredData=defaultData.filter((item)=>{
+            return item.email.toLowerCase().includes(searchTerm.toLowerCase());
+           })
+          console.log(filteredData);
+          setData(filteredData);
+          setExportData(filteredData)    
+        }
+        setData(defaultData);
+        setExportData(defaultData);
+      }else if(postid?.length > 0){
+        // const updatedpostData=defaultData.filter((item)=>{
+        //   return item.postId == postid
+        // }) 
+        const intersection = defaultData.filter(obj1 => postid.some(obj2 => obj1.postId === obj2.value));
+        if(searchTerm === "")
+        {
+          setData(intersection);
+          console.log(intersection);
+          setExportData(intersection)    
+        }else
+        {
+          const filteredData=intersection.filter((item)=>{
+            return item.email.toLowerCase().includes(searchTerm.toLowerCase());
+           })
+          console.log(filteredData);
+          setData(filteredData);
+          setExportData(filteredData)    
+        }
       }
-      )
-        .then(function(response){
-          console.log(response)
-          return response.json();
-        })
-        .then(function(myJson) {
-          console.log(myJson);
-          setData(myJson)
-        });
-    }
-    useEffect(()=>{
-      getData()
-    },[])
+     },[postid,searchTerm]);
 
 
+  
+console.log(data);
   return (
     <div className='container'>
-      <TableContainer >
-        <Table sx={{ minWidth: 700, background: "white" }} aria-label="customized table">
-
+      <TableContainer sx={{maxHeight:"calc(100vh - 380px)"}} >
+        <Table sx={{ minWidth: 100, background: "white" }} aria-label="customized table">
           <TableHead >
             <TableRow>
-              <StyledTableCell>posiId</StyledTableCell>
-              <StyledTableCell>Id:</StyledTableCell>
+              <StyledTableCell>postId</StyledTableCell>
+              <StyledTableCell>Id</StyledTableCell>
               <StyledTableCell >Name</StyledTableCell>
               <StyledTableCell >email</StyledTableCell>
               <StyledTableCell >body</StyledTableCell>
-              {/* <StyledTableCell >Phone Number</StyledTableCell>
-              <StyledTableCell>Payer Type</StyledTableCell>
-              <StyledTableCell >Doctor's Name</StyledTableCell>
-              <StyledTableCell>Latest Counselled amount</StyledTableCell>
-              <StyledTableCell align='left'>Current Apporox Bill</StyledTableCell>
-              <StyledTableCell align="left">Last Counselled By</StyledTableCell>
-              */}
-             
+              <StyledTableCell >Date</StyledTableCell>
             </TableRow>
           </TableHead>
           <TableBody >
-          {/* data && data.length>0 && data.map((item)=><p>{item.about}</p>) */}
-          {/* const rows = repeatData.flatMap((item, index) => { */}
-            {(rowsPerPage > 0
-            ? data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-            : data
-          ).map((row) => (
-              <StyledTableRow key={row.postId}>
-                <StyledTableCell component="th" scope="row">
-                  {row.postId}
-                </StyledTableCell>
-                <StyledTableCell component="th" scope="row">
-                  {row.id}
-                </StyledTableCell>
+
+            {( data &&  rowsPerPage > 0 && 
+                data.slice(page*rowsPerPage, page*rowsPerPage+rowsPerPage)
+                  ).map((row,index) => (
+              <StyledTableRow key={index}>
+                <StyledTableCell >{row.postId}</StyledTableCell>
+                <StyledTableCell component="th" scope="row">{row.id}</StyledTableCell>
                 <StyledTableCell align="left" fontWeight="bold">{row.name}</StyledTableCell>
                 <StyledTableCell align="left" fontWeight="bold">{row.email}</StyledTableCell>
                 <StyledTableCell align="left">{row.body}</StyledTableCell>
-                {/* <StyledTableCell align="left">{row.PhoneNumber}</StyledTableCell>
-                <StyledTableCell align="left">{row.PayerType}</StyledTableCell>
-                <StyledTableCell align="left">{row.DoctorName}</StyledTableCell>
-                <StyledTableCell align="left">{row.LatestCounselledamount}</StyledTableCell>
-                <StyledTableCell align="left">{row.CurrentApporoxBill}</StyledTableCell>
-                <StyledTableCell align="left">{row.LastCounselledBy}</StyledTableCell> */}
+                <StyledTableCell align="left">{row.date}</StyledTableCell>
+
+                {/* {(content.map((content,index)=> (
+                    <StyledTableRow key={index}>
+                      <StyledTableCell align="left" fontWeight="bold">{content.date}</StyledTableCell>
+                      <StyledTableCell align="left" fontWeight="bold">{content.id}</StyledTableCell>
+                      <StyledTableCell align="left" fontWeight="bold">{content.date}</StyledTableCell>
+                    </StyledTableRow>
+                   )))} */}
               </StyledTableRow>
             ))}
+           
           </TableBody>
         </Table>
       </TableContainer>
       <Box sx={{ display: "flex", justifyContent: "flex-end" }} data-testid="view-data-model-pagination">
       <TablePagination
-              rowsPerPageOptions={[5, 10, 20, { label: 'All', value: -1 }]}
-              // colSpan={3}
-              count={data.length}
+              rowsPerPageOptions={[20, { label: 'All', value: -1 }]} 
+              count={data?.length}
               rowsPerPage={rowsPerPage}
               page={page}
               SelectProps={{
