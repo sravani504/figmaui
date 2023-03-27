@@ -41,10 +41,10 @@ const Counselling = () => {
   return (
     <>
       <Navbar />
-      <div className='container' style={{ background: "white", height: "570px", marginTop: "40px" }}>
+      <div className='container' style={{ background: "white", height: "700px", marginTop: "40px" }}>
         <Typography fontSize={"24px"} mb={6} >Financial Counselling</Typography>
 
-        <Grid container m={2}  direction={"row"} justifyContent={"space-evenly"}>
+        <Grid container m={2}  direction={"row"} justifyContent={"space-evenly"} >
           <Grid item  >
             <Typography sx={{color:"#8c6631"}} mb={1} >Date of Counselling</Typography>
             <Space direction="vertical" >
@@ -120,8 +120,9 @@ const Counselling = () => {
             </Box>
           </Grid>
           </Grid>
-          <Grid container direction={"row"} justifyContent={"space-evenly"}>
-          <Grid item xs={3}>
+          
+          <Grid container  m={2} direction={"row"} justifyContent={"space-evenly"} mb={5}>
+          <Grid item >
             <Typography sx={{color:"#8c6631"}} mb={1} >Patient Name</Typography>
             <Box
               component="form"
@@ -179,8 +180,8 @@ const Counselling = () => {
 
           </Grid>
           </Grid>
-          <Grid container direction={"row"} justifyContent={"space-evenly"}>
-          <Grid item  xs={3} >
+          <Grid container m={2}direction={"row"} justifyContent={"space-evenly"} mb={5} >
+          <Grid item  >
             <Typography  sx={{color:"#8c6631"}}  mb={1} >Date of surgery</Typography>
             <Space direction="vertical" size={8}>
               <DatePicker
@@ -202,9 +203,9 @@ const Counselling = () => {
 
           </Grid>
 
-          <Grid item  xs={3} >
+          <Grid item >
             <Typography sx={{color:"#8c6631"}} mb={1}  >Surgery/Procedure Name</Typography>
-            <Grid item pl={1} >
+            <Grid item  xs={3}  >
               <Autocomplete
                 disablePortal
                 id="combo-box-demo"
@@ -243,10 +244,11 @@ const Counselling = () => {
             </Grid>
 
           </Grid>
-          <Grid container direction={"row"} justifyContent={"space-evenly"}> 
-          <Grid item  xs={3}  >
+          </Grid>
+          <Grid container m={2} direction={"row"} justifyContent={"space-evenly"}> 
+          <Grid item    >
             <Typography sx={{color:"#8c6631"}}   mb={1} >Room Opted</Typography>
-            <Grid item pl={1} >
+            <Grid item xs={3}>
               <Autocomplete
                 disablePortal
                 id="combo-box-demo"
@@ -258,9 +260,9 @@ const Counselling = () => {
 
           </Grid>
          
-          <Grid item  xs={3} >
+          <Grid item xs={3} >
             <Typography sx={{color:"#8c6631"}}  mb={1} > Tariff ofRoom Opted</Typography>
-            <Grid item pl={1} >
+            <Grid item p={1} >
               <Autocomplete
                 disablePortal
                 id="combo-box-demo"
@@ -271,7 +273,7 @@ const Counselling = () => {
             </Grid>
 
           </Grid>
-          <Grid item   xs={3}>
+          <Grid item  xs={3}>
             <Typography sx={{color:"#8c6631"}} mb={1}  >Made of Payment</Typography>
             <Grid item pl={1} >
               <Autocomplete
@@ -284,7 +286,7 @@ const Counselling = () => {
             </Grid>
             </Grid>
           </Grid>
-          </Grid>
+         
         {/* </Grid> */}
         <Grid container mt={5} spacing={2}  direction={"row"} justifyContent={"space-evenly"} display={"flex"}>
           <Grid item   >
