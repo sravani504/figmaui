@@ -10,7 +10,7 @@ import { BsSpeedometer2 } from 'react-icons/bs';
 import { RiAccountCircleFill } from 'react-icons/ri'
 import { GoCommentDiscussion } from "react-icons/go";
 import { MdComment } from "react-icons/md";
-import { Button, Grid, Stack } from '@mui/material';
+import { Button, Grid, Link, Stack } from '@mui/material';
 import Card from "../components/Card";
 import Card1 from "../components/Card1";
 import EnhancedTable from "../components/EnhancedTable"
@@ -42,7 +42,7 @@ export default function Navbar() {
           <BsSpeedometer2 />
           <Typography mr={1} style={{ padding: "10px" }} >Dashboard</Typography>
           <GoCommentDiscussion style={{ padding: "5px" }} />
-          <Typography mr={1} style={{ padding: "10px" }}>Counselling</Typography>
+          <Link to="/counselling"> <Typography mr={1} style={{ padding: "10px" }}>Counselling</Typography></Link> 
           <MdComment />
           <Typography mr={1} style={{ padding: "10px" }}>Track Bills</Typography>
           <Box sx={{ flexGrow: 1 }} />
@@ -60,9 +60,9 @@ export default function Navbar() {
           <Typography padding={"10px"} marginLeft={"46px"}>Dashboard</Typography>
         </Grid>
       </Grid>
-      <Card />
-      <Card1  setSearchTerm={setSearchTerm} searchTerm={searchTerm} exportData={exportData} setExportData={setExportData} postid={postid} setPostid={setPostid} setSelectedDateRange={setSelectedDateRange}  selectedDateRang={selectedDateRange}/>
-      <EnhancedTable searchTerm={searchTerm} setExportData={setExportData} exportData={exportData}  postid={postid} setPostid={setPostid}  selectedDateRange={selectedDateRange}/>
+      {/* <Card /> */}
+      {/* <Card1  setSearchTerm={setSearchTerm} searchTerm={searchTerm} exportData={exportData} setExportData={setExportData} postid={postid} setPostid={setPostid} setSelectedDateRange={setSelectedDateRange}  selectedDateRang={selectedDateRange}/> */}
+      {/* <EnhancedTable searchTerm={searchTerm} setExportData={setExportData} exportData={exportData}  postid={postid} setPostid={setPostid}  selectedDateRange={selectedDateRange}/> */}
     </Box>
 
 

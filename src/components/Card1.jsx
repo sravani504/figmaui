@@ -4,6 +4,7 @@ import { Grid, Box } from '@mui/material';
 import { useState, useEffect } from 'react';
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
+
 import Typography from '@mui/material/Typography';
 import { IoIosSearch } from "react-icons/io";
 import InputAdornment from "@mui/material/InputAdornment";
@@ -16,9 +17,14 @@ import * as FileSaver from "file-saver";
 import { DemoContainer, DemoItem } from '@mui/x-date-pickers/internals/demo';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DateRangePicker } from '@mui/x-date-pickers-pro/DateRangePicker';
 
-// import { DateRangePicker } from '@mui/x-date-pickers-pro/DateRangePicker';
-import { DateRangePicker } from '@mui/x-date-pickers-pro';
+
+import { DatePicker, Radio } from 'antd';
+const { RangePicker } = DatePicker;
+
+
+// import { DateRangePicker } from '@mui/x-date-pickers-pro';
 
 const names = [
   { label: '1', value: 1 },
@@ -34,7 +40,7 @@ const names = [
 ];
 
 
-const Card1 = ({ setSearchTerm, searchTerm, exportData, setExportData, postid, setPostid,setSelectedDateRange,selectedDateRang }) => {
+const Card1 = ({ setSearchTerm, searchTerm, exportData, setExportData, postid, setPostid,setSelectedDateRange,selectedDateRange }) => {
 
 
   const [data, setData] = useState([]);
@@ -42,7 +48,7 @@ const Card1 = ({ setSearchTerm, searchTerm, exportData, setExportData, postid, s
 
   console.log(postid);
   console.log(searchTerm);
-  console.log(selectedDateRang);
+  console.log(selectedDateRange);
 
   const fileType = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet; charset=UTF-8';
   const fileExtension = ".xlsx";  
@@ -90,31 +96,24 @@ const Card1 = ({ setSearchTerm, searchTerm, exportData, setExportData, postid, s
   };
 
   
-
+  const [placement, SetPlacement] = useState('topLeft');
+  const placementChange = (e) => {
+    SetPlacement(e.target.value);
+  };
 
   return (
     <div className='container mb-0' style={{ marginBottom: "0px" }}>
-      <Grid container style={{ backgroundColor: "#687574 ", marginTop: "2px", alignItems: "center", borderRadius: "5px" }} display={"flex"} justifyContent={"space-between"} padding={"5px"}>
-        <Grid item alignItems={"center"} justifyContent={"center"} marginTop={"1px"} fontSize="20px" color={"white"} paddingLeft={"20px"}>
+      <Grid container style={{ backgroundColor: "#687574 ", marginTop: "2px", alignItems: "center", borderRadius: "5px" }} display={"flex"} justifyContent={"space-around"} padding={"5px"}>
+        <Grid item  alignItems={"center"} justifyContent={"center"} marginTop={"1px"} fontSize="20px" color={"white"}>
           Bill Tracking
         </Grid>
         <Grid item marginTop={"1px"} display={"flex"} alignItems={"center"} justifyContent={"space-between"} fontSize="20px" color={"white"}>
-          <Grid item>
-            <Typography>Filter By:</Typography>
+          <Grid item  >
+            <Typography >Filter By:</Typography>
           </Grid>
-          <Grid item ml={1}>
-            {/* <Autocomplete
-              disablePortal
-              id="combo-box-demo"
-              options={names}
-              value={postid}
-               onChange={(event, newValue) => {
-               setPostid(newValue.value);
-                }}
-              sx={{ backgroundColor: "white", border: "none", borderRadius: "5px", width: "170px", "& .MuiOutlinedInput-root": { padding: "0px" }, "& .MuiInputLabel-root": {lineHeight:"13px" }, "& .MuiAutocomplete-endAdornment": { background: "#251d6e", borderRadius: "5px", right: "0px !important", top: "calc(50% - 18px)"  }, "& .MuiButtonBase-root":{color:"white", marginRight: "0px !important"}, "& .MuiAutocomplete-input": {textAlign: "center"}, " & .MuiOutlinedInput-root":{right:"0px"}," & .MuiAutocomplete-root":{right:"80px"},"& .MuiSvgIcon-root":{height: "31px !important"}, "& .MuiOutlinedInput-input":{alignItems:"center",justifyContent:"center"},"& .MuiAutocomplete-popper":{justifyContent:"center"}}}
-              renderInput={(params) => <TextField  {...params} label="Post Id" />}
-            /> */}
-            <Grid item ml={1}>
+          <Grid item ml={1} >
+           
+            <Grid item ml={3}>
               <Autocomplete
                 multiple
 
@@ -134,10 +133,10 @@ const Card1 = ({ setSearchTerm, searchTerm, exportData, setExportData, postid, s
               />
             </Grid>
           </Grid>
-          <Grid item mr={1} pl={2}>
+          <Grid item mr={3} pl={4} >
             <Typography>IP or UMR No:</Typography>
           </Grid>
-          <Grid item pl={1} mr={1} padding={"0px"}>
+          <Grid item pl={1} mr={3} padding={"0px"}>
             <Box
               component="form"
               sx={{
@@ -153,40 +152,25 @@ const Card1 = ({ setSearchTerm, searchTerm, exportData, setExportData, postid, s
               />
             </Box>
           </Grid>
-
-
-          {/* <Grid item pl={1} mr={1} padding={"0px"}>
-            <Box
-              component="form"
-              sx={{
-                '& > :not(style)': { width: '17ch', a lignItems: "center"," & .MuiTypography-root":{color:"white"}, justifyContent: "space-between", backgroundColor: "white", borderRadius: "5px", height: "35px", '& .MuiInputBase-input': { padding: "0px" } },
-              }}
-              noValidate
-              autoComplete="off"
-            >   
-              <TextField id="outlined-basic" label="Enter Date" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} alignItems="center" variant="outlined" sx={{ '& . MuiOutlinedInput-input': { padding: "0px" }, '& .MuiInputBase-input': { height: "35px" }, '& .MuiFormLabel-root': { justifyContent: "space-between", alignItems: "center", lineHeight: "13px" }, '& .MuiInputAdornment-root': { background: "#251d6e", width: "34px", height: "100%", borderRadius: "5px", padding: "1px", color: "white" }, "& .MuiOutlinedInput-root": { paddingRight: "0px" }, ' & .MuiInputBase-input': { marginLeft: "20px" } }}
-
-                InputProps={{
-                  endAdornment: <InputAdornment position="end">Go</InputAdornment>
-               }}  
-              />                
-            </Box>    
-          </Grid> */}
-          {/* <Box m={1} ml={0}>
-          <Button variant='contained' sx={{ '& > :not(style)':{width:"0px!important"," & .MuiButtonBase-root ":{lineHeight:"80px",padding:"5px 10px"}}}}>Go</Button>
-          </Box> */}
-     
-     <Box mr={2} sx={{width:"320px",padding:"1px",backgroundColor:"white"}}>
+{/*      
+     <Box mr={3} sx={{width:"320px",padding:"1px",backgroundColor:"white"}}>
      <LocalizationProvider dateAdapter={AdapterDayjs} >
       <DemoContainer components={['DateRangePicker']}  >
         <DateRangePicker onChange={handleDateRangeChange} height={"2px"} sx={{borderRadius:"1opx",height:"25px !important",border:"none !important","& .MuiFormControl-root":{marginLeft:"0px !important"},}} localeText={{ start: 'Start', end: 'End' }} />
       </DemoContainer>
     </LocalizationProvider>
-     </Box>
+     </Box> */}
+
+     <>
+      <Radio.Group  mr={3} value={selectedDateRange} onChange={handleDateRangeChange}>      
+      </Radio.Group>    
+      <RangePicker  selectedDateRange={selectedDateRange} />
+    </> 
+
      {/* <Box m={1} ml={0}>
           <Button variant='contained' sx={{ marginLeft:"5px",'& > :not(style)':{width:"0px!important"," & .MuiButtonBase-root ":{lineHeight:"80px",padding:"5px 10px"}}}}>Go</Button>
           </Box> */}
-          <Box sx={{ display: "flex", justifyContent: "flex-end" }} >
+          <Box sx={{ display: "flex", justifyContent: "flex-end", marginLeft:"17px" }} >
             <Button variant='contained' onClick={exportToExcel} >Export to Excel</Button>
           </Box>
         </Grid>

@@ -117,6 +117,8 @@ console.log(selectedDateRange);
   const [data,setData]=useState(content);
   console.log(data);
 
+
+
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
@@ -238,7 +240,7 @@ console.log(selectedDateRange);
   
 console.log(data);
   return (
-    <div className='container'>
+    <div className='container' style={{marginBottom: "0px"}}>
       <TableContainer sx={{maxHeight:"calc(100vh - 380px)"}} >
         <Table sx={{ minWidth: 100, background: "white" }} aria-label="customized table">
           <TableHead >
@@ -279,7 +281,7 @@ console.log(data);
       </TableContainer>
       <Box sx={{ display: "flex", justifyContent: "flex-end" }} data-testid="view-data-model-pagination">
       <TablePagination
-              rowsPerPageOptions={[20, { label: 'All', value: -1 }]} 
+              rowsPerPageOptions={[20, { label: 'All', value: data?.length }]} 
               count={data?.length}
               rowsPerPage={rowsPerPage}
               page={page}
