@@ -120,7 +120,7 @@ const Counselling = () => {
             </Box>
           </Grid>
           </Grid>
-          <Grid container>
+          <Grid container direction={"row"} justifyContent={"space-evenly"}>
           <Grid item xs={3}>
             <Typography sx={{color:"#8c6631"}} mb={1} >Patient Name</Typography>
             <Box
@@ -179,7 +179,7 @@ const Counselling = () => {
 
           </Grid>
           </Grid>
-          <Grid container>
+          <Grid container direction={"row"} justifyContent={"space-evenly"}>
           <Grid item  xs={3} >
             <Typography  sx={{color:"#8c6631"}}  mb={1} >Date of surgery</Typography>
             <Space direction="vertical" size={8}>
@@ -243,6 +243,7 @@ const Counselling = () => {
             </Grid>
 
           </Grid>
+          <Grid container direction={"row"} justifyContent={"space-evenly"}> 
           <Grid item  xs={3}  >
             <Typography sx={{color:"#8c6631"}}   mb={1} >Room Opted</Typography>
             <Grid item pl={1} >
@@ -256,19 +257,7 @@ const Counselling = () => {
             </Grid>
 
           </Grid>
-          <Grid item  xs={3} >
-            <Typography sx={{color:"#8c6631"}}  mb={1} >Room Opted</Typography>
-            <Grid item pl={1} >
-              <Autocomplete
-                disablePortal
-                id="combo-box-demo"
-                options={rooms}
-                sx={{ backgroundColor: "#e6f5ee", alignItems: "center", border: "none", borderRadius: "5px", width: "220px", "& .MuiOutlinedInput-root": { padding: "0px" }, "& .MuiInputLabel-root": { lineHeight: "14px" }, "& .MuiAutocomplete-endAdornment": { background: "#251d6e", borderRadius: "5px", right: "0px !important", height: "36px !important", top: "calc(50% - 18px)" }, "& .MuiButtonBase-root": { color: "white", marginRight: "0px !important" }, "& .MuiAutocomplete-input": { textAlign: "center" }, " & .MuiOutlinedInput-root": { Right: "0px" }, " & .MuiAutocomplete-root": { right: "80px" }, "& .MuiSvgIcon-root": { height: "31px !important" }, " & .MuiAutocomplete-popper": { justifyContent: "flex-start !important" }, " & .MuiPopper-root": { justifyContent: "center" } }}
-                renderInput={(params) => <TextField textAlign={"center"} {...params} label="Room Name" />}
-              />
-            </Grid>
-
-          </Grid>
+         
           <Grid item  xs={3} >
             <Typography sx={{color:"#8c6631"}}  mb={1} > Tariff ofRoom Opted</Typography>
             <Grid item pl={1} >
@@ -293,7 +282,7 @@ const Counselling = () => {
                 renderInput={(params) => <TextField textAlign={"center"} {...params} label="Room Name" />}
               />
             </Grid>
-
+            </Grid>
           </Grid>
           </Grid>
         {/* </Grid> */}
