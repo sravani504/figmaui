@@ -119,6 +119,8 @@ const Counselling = () => {
               />
             </Box>
           </Grid>
+          </Grid>
+          <Grid container>
           <Grid item xs={3}>
             <Typography sx={{color:"#8c6631"}} mb={1} >Patient Name</Typography>
             <Box
@@ -176,6 +178,8 @@ const Counselling = () => {
             </Grid>
 
           </Grid>
+          </Grid>
+          <Grid container>
           <Grid item  xs={3} >
             <Typography  sx={{color:"#8c6631"}}  mb={1} >Date of surgery</Typography>
             <Space direction="vertical" size={8}>
@@ -291,7 +295,8 @@ const Counselling = () => {
             </Grid>
 
           </Grid>
-        </Grid>
+          </Grid>
+        {/* </Grid> */}
         <Grid container mt={5} spacing={2}  direction={"row"} justifyContent={"space-evenly"} display={"flex"}>
           <Grid item   >
             <FormGroup >
